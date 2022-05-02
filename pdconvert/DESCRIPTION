@@ -1,0 +1,13 @@
+Package: pdconvert
+Type: Package
+Title: Simple package that converts percent values to decimal form and decimal numbers into percent values. For example from 52% to 0.52 and 0.63 to 63%
+Version: 0.1.0
+Author: Trevor Cone
+Maintainer: Trevor Cone trevor14@usf.edu
+Description: Three Functions: Convert from Percentage format to Decimal format, convert from decimal format to percentage, and create decimals.
+License: CC0 1.0 Universal Public Domain Dedication
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Depends: 
+    R (>= 2.10)

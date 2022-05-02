@@ -1,0 +1,79 @@
+---
+title: "Demo of pdconvert"
+author: "Trevor T Cone"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Demo of pdconvert}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Consider the following Dataframes in the data file
+These are assignements for 7 students. The first three assignments scores are recorded in percentages and the latter three are recorded in numerical values. The max points you can get for assignment 4, 5, and 6 are 10, 20, and 25 respectively. I put these as variables shown below.
+
+```{r, include=FALSE}
+
+Names <- c("Odessa", "Vivian", "Bethy", "Adonia", "Claudia", "Cosmo", "Leander")
+assignment1 <- c("80%", "82%", "89%", "92%", "80%", "59%","86%")
+assignment2 <- c("89%", "18%", "83%", "91%", "85%", "72%","75%")
+assignment3 <- c("90%", "89%", "64%", "87%", "90%", "100%","90%")
+
+assignment4 <- c(10, 10, 9, 8, 6, 7, 10)
+assignment4MostPoints <- 10
+assignment5 <-c(5, 7, 8, 16, 20, 19, 13)
+assignment5MostPoints <- 20
+assignment6 <- c(19, 18, 13, 17, 14, 10, 15)
+assignment6MostPoints <- 25
+ExampleDataFrame2  <- data.frame(Names, assignment4, assignment5, assignment6)
+
+
+ExampleDataFrame <- data.frame(Names, assignment1, assignment2, assignment3)
+
+```
+# display of Dataframes
+```{r}
+ExampleDataFrame
+ExampleDataFrame2
+assignment4MostPoints
+assignment5MostPoints
+assignment6MostPoints
+```
+
+
+First thing you can do with pdconvert is changing those Percentages into decimal form. Notice how the Percent sign is taken from each score. We can store the output values into variables. We'll put them into variables called aX x being the assignment number.
+```{r}
+a1 <- PercenttoDecimal(ExampleDataFrame$assignment1)
+a2 <-PercenttoDecimal(ExampleDataFrame$assignment2)
+a3 <- PercenttoDecimal(ExampleDataFrame$assignment3)
+```
+
+# Next you can Change Decimals to Percentages. Notice it adds the % symbol for each value. When the % is added it becomes type "chr"
+```{r}
+DecimaltoPercent(a1)
+DecimaltoPercent(a2)
+DecimaltoPercent(a3)
+```
+
+# We can also create decimals if we need to. In the second Example dataframe we just have numbers for each score by student. This isn't helpful so we can use this next function to create a decimal form number to find the percentage score. for assignments 4,5,6 we will use the three variables above to use as a denominator when determining scores. 
+```{r}
+a4 <- CreateDecimal(ExampleDataFrame2$assignment4, assignment4MostPoints)
+a5 <- CreateDecimal(ExampleDataFrame2$assignment5, assignment5MostPoints)
+a6 <- CreateDecimal(ExampleDataFrame2$assignment6, assignment6MostPoints)
+```
+
+# We can convert those into percentage scores
+```{r}
+DecimaltoPercent(a4)
+ DecimaltoPercent(a5)
+ DecimaltoPercent(a6)
+```
+
+
